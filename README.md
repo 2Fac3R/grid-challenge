@@ -1,4 +1,6 @@
-This repository represents my solution to the *Userlab js* challenge.
+# 2D Grid Challenge
+
+This repository implements my solution to the 'challenge.txt' file.
 
 **Notes**:
 

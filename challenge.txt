@@ -1,0 +1,77 @@
+# The challenge
+
+The task is to write a function that predicts the next locations 
+of people on a 2d grid, given each person's current location and
+the direction they step.
+
+## Input / Output
+
+- *Input:* A list of each person's position on the grid, and the direction they will step (north, east, south, west, or none).
+- *Output:* A list of each person's new location on the grid. 
+
+The data structure you use to represent input/output is up to you, and finding
+an appropriate one is part of the challenge.  There's no right answer though --
+it may vary depending on the language you use and your approach to solving the
+problem.
+
+## Movement Constraints
+
+The movement follows a few rules:
+
+- No person can walk into a space occupied by a person who is not moving.
+- No two or more people can walk into the same space.  If that would happen,
+    then neither person moves.
+- No two adjacent people can swap positions.  If that would happen, then
+    neither person moves.
+
+Otherwise, a person will move one space in the specified direction. 
+
+## Javascript Test Cases
+
+The input is an array, each element of which has a structure like: `[[1, 2],
+"n"]` (a person at location `(1, 2)` moving north).
+
+The output is an array of the resulting coordinates. These examples have four or
+five people for simplicity, but inputs can consist of any (non-zero) number of
+people.
+
+If you decide on a different input representation, you may update the `test`
+function so that it transforms the input before passing it to your solution function `f`.
+
+```javascript
+const eq = (a, b) => JSON.stringify(a) === JSON.stringify(b)
+const test = (input, output) => {
+    console.log(
+        eq(f(input), output)
+    )
+}
+
+test(
+    [[[0, 0], "n"], [[-1, 0], "e"], [[-2, 0], "e"], [[1, 0], "w"]],
+    [[0, 1], [-1, 0], [-2, 0], [1, 0]],
+)
+test(
+    [[[0, 0], ""], [[0, 1], "n"], [[0, 2], "n"], [[0, 3], "e"]],
+    [[0, 0], [0, 2], [0, 3], [1, 3]],
+)
+test(
+    [[[0, -1], "n"], [[0, -2], "n"], [[0, -3], "n"], [[1, -2], "w"]],
+    [[0, 0], [0, -1], [0, -3], [1, -2]],
+)
+test(
+    [[[0, 0], "e"], [[1, 0], "n"], [[1, 1], "w"], [[0, 1], "s"], [[2, 0], "e"]],
+    [[1, 0], [1, 1], [0, 1], [0, 0], [3, 0]],
+)
+test(
+    [[[0, 0], "e"], [[1, 0], "n"], [[1, 1], "w"], [[0, 1], "s"], [[2, 0], "w"]],
+    [[0, 0], [1, 0], [1, 1], [0, 1], [2, 0]],
+)
+test(
+    [[[0, 1], "s"], [[1, 1], "w"], [[1, 0], "n"], [[0, 0], "e"], [[2, 0], "e"]],
+    [[0, 0], [0, 1], [1, 1], [1, 0], [3, 0]],
+)
+test(
+    [[[0, 0], "n"], [[0, 1], "s"]],
+    [[0, 0], [0, 1]]
+)
+```
